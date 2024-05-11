@@ -1,0 +1,56 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+
+ul {
+    list-style: none;
+    background: black;
+    text-align: center;
+}
+    
+ul li {
+    display: inline-block;
+    position: relative;
+}
+    
+ul li a {
+    background:   black;
+    display: block;
+    padding: 10px 45px;
+    color: white;
+    text-decoration: none ;
+    font-size: 33px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.dropdown{
+    text-align: center;
+    color: Wwhite;
+    display: block;
+    width: 230px;
+    padding: 20px;
+    background: black;
+    position: absolute;
+    z-index: 1;
+    border-bottom-left-radius: 10px;
+    top: 63px;
+    right: 0px;
+    display: none;
+}
+
+ul li a:hover{
+    color: lightseagreen;
+}
+
+ul li:hover ul.dropdown{
+    display: block;
+}
+
+#active{
+     color:lightseagreen;
+}
+
+
