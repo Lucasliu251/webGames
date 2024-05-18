@@ -4,7 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <title>扫雷</title>
-    <style>
+    <p id="timer">00:00</p>  
+    <style>      
+  #timer {  
+    font-size: 24px;  
+    font-weight: bold;  
+    color: #333; /* 字体颜色 */  
+    margin-top: 20px; /* 上边距 */  
+    text-align: center; /* 文本居中对齐 */  
+    display: inline-block; /* 作为内联块级元素显示 */  
+    padding: 5px 10px; /* 内边距 */  
+    background-color: #f5f5f5; /* 背景颜色 */  
+    border: 1px solid #ccc; /* 边框 */  
+    border-radius: 5px; /* 边框圆角 */ 
+  }  
         .box{
             display:flex;
             flex-wrap:wrap;
@@ -43,6 +56,29 @@
 </body>
 
 <script>
+     let timerId; // 用于存储setInterval返回的ID  
+  let seconds = 0; // 计时器秒数  
+  let minutes = 0; // 计时器分钟数  
+  function pad(num) {  
+    return num < 10 ? '0' + num : num;  
+  }  
+  
+  function updateTimer() {  
+    seconds++;  
+    if (seconds >= 60) {  
+      seconds = 0;  
+      minutes++;  
+    }  
+    // 更新DOM中的时间显示  
+    document.getElementById('timer').textContent = `${pad(minutes)}:${pad(seconds)}`;  
+  }  
+   // 当文档加载完成后自动开始计时  
+   window.onload = function() {  
+    // 清除之前可能存在的计时器（虽然这里不太可能，但为了保险起见）  
+    clearInterval(timerId);  
+    // 开始新的计时器  
+    timerId = setInterval(updateTimer, 1000);  
+  };   
     const rows = 20
     const cols = 20
     const size = 30
@@ -87,8 +123,10 @@
             v.classList.remove('hide')
             if (minesCount === box.querySelectorAll('.hide').length) {
                 alert('恭喜您成功了')
+                endGame()
             } else if (v.querySelector('.circle')) {
                 setTimeout(() => alert('游戏失败，踩中地雷了'), 100)
+                endGame()
             } else if (v.innerText.trim() === '') {
                 const indexs = v.getAttribute('data-v').split('-').map(v => Number(v))
                 const loop = (indexs) => {
@@ -121,6 +159,12 @@
             v.classList.toggle('info')
             message.innerHTML = `地雷：${minesCount - box.querySelectorAll('.info').length}`
             e.preventDefault()
-        })
+        })  
     })
+    function endGame() {  
+    // 停止计时器  
+    clearInterval(timerId);  
+    // 这里可以添加游戏结束后的逻辑，比如显示总时间等  
+    console.log('游戏结束，总时间：', `${pad(minutes)}:${pad(seconds)}`);  
+  }  
 </script>
