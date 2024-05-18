@@ -21,6 +21,7 @@
         .box{
             display:flex;
             flex-wrap:wrap;
+            background-color:rgb(255, 255, 255);
         }
         .item{
             border:1px solid #ddd;
@@ -29,34 +30,48 @@
             align-items:center;
             justify-content: center;
             cursor: pointer;
+            
         }
-        <!--地雷样式-->
+
         .cricle{
             border: 10px solid #a33939;
             border-radius: 100%;
         }
-        <!--隐藏元素-->
+
         .hide{
-            background-color: #b3b1b1;
+            background-color: #9a87c5;
         }
         .hide>*{
             display:none;
         }
-        <!--右键标记-->
+
         .info:after{
             content:'危';
-            color:#a86868;
+            color:#ff0000;
         }
-        <!--消息区-->
+
         .message{
             font-size:14px;
+            color: aquamarine;
+        }
+        body{
+            background-repeat: no-repeat;
+            background-size: cover;
+        }   
+        img{
+            height: 320px;
+            width: 320px;
+            display: block;
+            margin: auto;
         }
     </style>
 </head>
 
 <body>
     <div class = 'message'></div>
-    <div class = 'box'></div>
+    <div class = 'box' style="width: 50%; margin-left: auto; margin-right: auto;"></div>
+    <body style="background-image: url('pp.gif');">
+        <img src="0.gif">
 </body>
 
 <script>
