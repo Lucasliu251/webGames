@@ -1,32 +1,29 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>贪吃蛇</title>
     <style>
-        <!--边框-->
         .mf {
             border: 1px solid #ddd;
             display: flex;
             flex-wrap: wrap;
         }
-        <!--填充-->
         .item {
             box-sizing: border-box;
-            border: 1px solid #ffffff;
+            border: 1px solid #ddd;
         }
-        <!--蛇-->
         .player {
             background-color: #444;
         }
-        <!--食物-->
         .eat {
             background-color:rosybrown;
         }
     </style>
 </head>
 <body>
-    <div class="fx">上下左右:WASD</div>
+    <div class="fx">上下左右：WASD</div>
     <div class="mf"></div>
     <script>
         const rows = 20
@@ -35,9 +32,8 @@
         const mf = document.querySelector('.mf')
         const result = []
         const player = [
-            [1,1]
+            [1, 1]
         ]
-        //玩家
         const updatePlayer = () => {
             document.querySelectorAll('.player').forEach(v => v.classList.remove('player'))
             player.forEach(v => {
@@ -45,7 +41,6 @@
             })
         }
         let key = ''
-        //食物
         for(let i=0;i<rows;i++) {
             for(let j=0;j<cols;j++) {
                 const isEat = Math.random() > 0.9
@@ -54,13 +49,11 @@
         }
         mf.innerHTML = result.join('')
         mf.style.width = `${cols * size}px`
-        //按键监听事件
         document.addEventListener('keydown', e=> {
             key = e.key
         })
-        //蛇身体控制
         const intervalId = setInterval(() => {
-            if (key) {      //如果有按键输入，更新蛇的位置
+            if (key) {
                 const needPos = JSON.parse(JSON.stringify(player.slice(0, player.length - 1)))
                 switch(key) {
                     case 'w':
@@ -95,3 +88,4 @@
         updatePlayer()
     </script>
 </body>
+</html>
